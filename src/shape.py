@@ -28,6 +28,8 @@ class Shape:
         return f"number of vertices: {len(self.vertices)}"
     
     def perimeter(self) -> float:
+        if(len(self.vertices) == 0):
+            raise RuntimeError("no vertex aded")
         if (len(self.vertices) > 0):
             P = 0
             for i in range(len(self.vertices)-1):
@@ -51,7 +53,9 @@ class Line(Shape):
         
         
     def __str__(self):
-        return f"Line:\n\t p1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t p2: (x : {self.vertices[1].x}, y: {self.vertices[1].y})"
+        p1 = f"Line:\n\tp1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t"
+        p2 = f"p2: (x : {self.vertices[1].x}, y: {self.vertices[1].y})"
+        return (p1 + p2)
 
     def area(self) -> float:
         return 0
@@ -64,9 +68,19 @@ class Triangle(Shape):
         self.add_vertex(p2)  ############################
         self.add_vertex(p3)  ############################
 
+        
+        if((self.vertices[0].x == self.vertices[1].x) and (self.vertices[0].x == self.vertices[2].x)):
+            raise RuntimeError("dsdssddssd")
+
+        if((self.vertices[0].y == self.vertices[1].y) and (self.vertices[0].y == self.vertices[2].y)):
+            raise RuntimeError("dsdssddssd")
+
     def __str__(self):
-        return f"Triangle:\n\t p1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t p2: (x : {self.vertices[1].x}, y: {self.vertices[1].y}) \n\t p3: (x : {self.vertices[2].x}, y: {self.vertices[2].y})"
-    
+        p1 = f"Triangle:\n\tp1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t"
+        p2 = f"p2: (x : {self.vertices[1].x}, y: {self.vertices[1].y}) \n\t"
+        p3 = f"p3: (x : {self.vertices[2].x}, y: {self.vertices[2].y})"
+        return (p1 + p2 + p3) 
+
     def area(self):
         a1 = self.vertices[0].x * (self.vertices[1].y - self.vertices[2].y)
         a2 = self.vertices[1].x * (self.vertices[2].y - self.vertices[0].y)
@@ -75,11 +89,15 @@ class Triangle(Shape):
 #################################################################################################
 class Rectangle(Shape):
     def __init__(self, p1:Point, p2:Point) -> None:
-        pass
+        self.vertices = []   #########################333
+        self.add_vertex(p1)  #3########################## NO Member Variable
+        self.add_vertex(p2)  ############################
+        
     def __str__(self):
-        return f""
-#################################################################################################
-p1 = Point(-1, 2)
-p2 = Point(1, 4)
-l = Line(p1, p2)
-print(len(l.vertices))
+        p1 = f"Rect:\n\tp1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t"
+        p2 = f"p2: (x : {self.vertices[1].x}, y: {self.vertices[0].y}) \n\t"
+        p3 = f"p3: (x : {self.vertices[1].x}, y: {self.vertices[1].y}) \n\t"
+        p4 = f"p4: (x : {self.vertices[0].x}, y: {self.vertices[1].y})"
+        return (p1 + p2 + p3 + p4)
+    def area(self):
+        return abs((self.vertices[0].x - self.vertices[1].x) * (self.vertices[0].y - self.vertices[1].y)) 
