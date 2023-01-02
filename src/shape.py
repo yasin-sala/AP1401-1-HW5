@@ -41,16 +41,13 @@ class Shape:
             if (len(self.vertices) == 2):
                 return (P + math.sqrt(X*X + Y*Y))/2
             else:
-                return P + math.sqrt(X*X + Y*Y)     
-        else:
-            return 1/0    
+                return P + math.sqrt(X*X + Y*Y)         
 #################################################################################################
 class Line(Shape):
     def __init__(self, p1:Point, p2:Point) -> None:
-        self.vertices = []   #########################333
-        self.add_vertex(p1)  #3########################## NO Member Variable
-        self.add_vertex(p2)  ############################
-        
+        Shape.__init__(self)  
+        self.add_vertex(p1)  
+        self.add_vertex(p2)  
         
     def __str__(self):
         p1 = f"Line:\n\tp1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t"
@@ -59,21 +56,19 @@ class Line(Shape):
 
     def area(self) -> float:
         return 0
-
 #################################################################################################
 class Triangle(Shape):
     def __init__(self, p1:Point, p2:Point, p3:Point) -> None:
-        self.vertices = []   #########################333
-        self.add_vertex(p1)  #3########################## NO Member Variable
-        self.add_vertex(p2)  ############################
-        self.add_vertex(p3)  ############################
+        Shape.__init__(self)
+        self.add_vertex(p1)  
+        self.add_vertex(p2)  
+        self.add_vertex(p3)  
 
-        
         if((self.vertices[0].x == self.vertices[1].x) and (self.vertices[0].x == self.vertices[2].x)):
-            raise RuntimeError("dsdssddssd")
+            raise RuntimeError("It's not a triangle")
 
         if((self.vertices[0].y == self.vertices[1].y) and (self.vertices[0].y == self.vertices[2].y)):
-            raise RuntimeError("dsdssddssd")
+            raise RuntimeError("It's not a triangle")
 
     def __str__(self):
         p1 = f"Triangle:\n\tp1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t"
@@ -89,9 +84,9 @@ class Triangle(Shape):
 #################################################################################################
 class Rectangle(Shape):
     def __init__(self, p1:Point, p2:Point) -> None:
-        self.vertices = []   #########################333
-        self.add_vertex(p1)  #3########################## NO Member Variable
-        self.add_vertex(p2)  ############################
+        Shape.__init__(self)
+        self.add_vertex(p1)  
+        self.add_vertex(p2)  
         
     def __str__(self):
         p1 = f"Rect:\n\tp1: (x : {self.vertices[0].x}, y: {self.vertices[0].y}) \n\t"
