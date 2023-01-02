@@ -123,6 +123,5 @@ class Test(unittest.TestCase):
         r = Rectangle(p1, p2)
         self.assertAlmostEqual(r.area(), 4, places=2)
 
-
 if __name__=='__main__':
     unittest.main(verbosity=0)
